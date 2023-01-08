@@ -33,7 +33,9 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        helpText: 'Help text'
+        helpText: 'Help text', 
+        title: 'Help', 
+        name: 'Trevor Knotts'
     });
 });
 
@@ -42,6 +44,22 @@ app.get('/weather', (req, res) => {
         latitude: 40,
         longitude: 75, 
         location: 'Somewhere'
+    });
+});
+
+app.get('/help/*', (req, res) => {
+    res.render('notfound', {
+        title: '404',
+        name: 'Trevor Knotts',
+        message: 'Help article not found!'
+    });
+});
+
+app.get('*', (req, res) => {
+    res.render('notfound', {
+        title: '404',
+        name: 'Trevor Knotts',
+        message: 'Page not found!'
     });
 });
 
