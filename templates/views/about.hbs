@@ -3,14 +3,19 @@
 <html>
 
 <head>
+    <title>About</title>
+    <link rel="icon" href="/img/weather.png">
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
 <body>
-    {{>header}}
+    <div class="main-content">
+        {{>header}}
 
-    <h1>{{title}}</h1>
-    <img src="/img/WK_Logo.PNG" />
+        <h1>{{title}}</h1>
+        <img class="portrait" src="/img/WK_Logo.PNG" />
+    </div>
+    
     {{>footer}}
 </body>
 
