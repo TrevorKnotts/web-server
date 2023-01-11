@@ -35,7 +35,9 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        helpText: 'Help text'
+        helpText: 'Help text', 
+        title: 'Help', 
+        name: 'Trevor Knotts'
     });
 });
 
@@ -51,6 +53,49 @@ app.get('/weather', (req, res) => {
                 info: data
             });
         });
+    });
+});
+
+// app.get('/products', (req, res) => {
+//     if(!req.query.search) {
+//         return res.send({
+//             error: 'You must provide a search term'
+//         });
+//     }
+//     console.log(req.query.search);
+//     res.send({
+//         products: []
+//     });
+// });
+app.get('/help/*', (req, res) => {
+    res.render('notfound', {
+        title: '404',
+        name: 'Trevor Knotts',
+        message: 'Help article not found!'
+    });
+});
+
+app.get('*', (req, res) => {
+    res.render('notfound', {
+        title: '404',
+        name: 'Trevor Knotts',
+        message: 'Page not found!'
+    });
+});
+
+app.get('/help/*', (req, res) => {
+    res.render('notfound', {
+        title: '404',
+        name: 'Trevor Knotts',
+        message: 'Help article not found!'
+    });
+});
+
+app.get('*', (req, res) => {
+    res.render('notfound', {
+        title: '404',
+        name: 'Trevor Knotts',
+        message: 'Page not found!'
     });
 });
 
