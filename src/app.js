@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 const app = express();
 
@@ -38,12 +40,31 @@ app.get('/help', (req, res) => {
 });
 
 app.get('/weather', (req, res) => {
-    res.send({
-        latitude: 40,
-        longitude: 75, 
-        location: 'Somewhere'
+    if(!req.query.address) {
+        return res.send({
+            error: 'You must provide an address!'
+        });
+    }
+    geocode(req.query.address, (err, data) => {
+        forecast(data.latitude, data.longitude, (err, data) => {
+            res.send({
+                info: data
+            });
+        });
     });
 });
+
+// app.get('/products', (req, res) => {
+//     if(!req.query.search) {
+//         return res.send({
+//             error: 'You must provide a search term'
+//         });
+//     }
+//     console.log(req.query.search);
+//     res.send({
+//         products: []
+//     });
+// });
 
 app.listen(3000, () => {
     console.log('Server is up on port 3000');
